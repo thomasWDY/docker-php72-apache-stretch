@@ -22,6 +22,9 @@ RUN apt-get update -y && \
 RUN docker-php-ext-configure gd --with-jpeg-dir=/usr/local/ && \
   docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
   docker-php-ext-install -j$(nproc) curl json xml mbstring zip bcmath soap pdo_mysql mysqli gd gettext imap
+  
+RUN docker-php-ext-configure intl \
+  && docker-php-ext-install intl
 
 # install ioncube    
 RUN curl -o ioncube.tar.gz http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz \
